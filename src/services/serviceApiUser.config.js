@@ -8,7 +8,7 @@ const APIHeaders = {
   Authorization: `Bearer ${updateToken()}`,
 };
 
-export const APIUser = axios.create({
+export const APIuser = axios.create({
   baseURL: `http://localhost:8081/api/v1`, //? el url de mi localhost donde despliego el backend
   headers: APIHeaders, //? ------------------- los headers creados arriba
   timeout: 600000, //? ----------------------- tiempo máximo para esperar en una request

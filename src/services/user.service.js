@@ -1,5 +1,5 @@
 import { updateToken } from "../utils";
-import { APIuser } from "./serviceApiUse.config";
+import { APIuser } from "./serviceApiUser.config";
 
 //? --------------------------- SON TODAS LAS RUTAS QUE CREAMOS EN EL BACKEND ------------------------------
 

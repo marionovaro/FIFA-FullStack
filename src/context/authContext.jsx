@@ -21,15 +21,14 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     },
   });
 
-  //! FUNCIÓN BRIGE ASINCRONÍA ()
+  //! FUNCIÓN BRIGE ASINCRONÍA (recibe los datos)
   const bridgeData = (state) => {
     const data = localStorage.getItem("data") //? coge los datos del register que hemos metido en el localstorage temporalmente
     const dataJson = JSON.parse(data) //? ------- los parseamos a JS
     switch (state) {
       case "ALLUSER": 
         setAllUser(dataJson); //? seteamos allUser con data (recordemos que la hemos sacado del register)
-        localStorage.removeItem("data");
-        
+        localStorage.removeItem("data"); //? borramos esa data del localstorage por temas de seguridad, ha sido solo temporal (-1segundo hasta que la meta en estado y borre)
         break;
     
       default:
@@ -49,9 +48,9 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     setUser(null) //? ---------------------- como no hay user, el estado user se queda vacío
   }
 
-  const value = useMemo(() => ({ //? ---- memoriza los datos, que lo que hace es un hook memoriza los returns de las funciones
-    user, setUser, login, logout //? ---- qué memoriza
-  }), [user]) //? ----------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
+  const value = useMemo(() => ({ //? ------------------------------------- memoriza los datos, que lo que hace es un hook memoriza los returns de las funciones
+    user, setUser, login, logout, allUser, setAllUser, bridgeData //? ---- qué memoriza
+  }), [user]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
 
   return <AuthContext.Provider value = {value}>{children}</AuthContext.Provider>
 }

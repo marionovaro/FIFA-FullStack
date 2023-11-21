@@ -124,7 +124,7 @@ export const Register = () => {
               className="btn"
               type="submit"
               disabled={send}
-              style={{ background: send ? "#49c1a388" : "#2f7a67" }}
+              style={{ background: send ? "#bae4ff" : "#d8f0ff" }}
             >
               Register
             </button>

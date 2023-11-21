@@ -140,7 +140,7 @@ export const Register = () => {
       </div>
       <div className="footerForm">
         <p className="parrafoLogin">
-          Already have an account? <Link to="/login">Login Here</Link>
+          Already have an account? <Link className = "login-here" to="/login">Login Here</Link>
         </p>
       </div>
     </>

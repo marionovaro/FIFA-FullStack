@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito");
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -10,7 +10,7 @@
 body {
   font-family: "Nunito", sans-serif;
   background: #fff;
-  color: #fff;
+  color: black;
   line-height: 1.8;
 }
 
@@ -27,11 +27,12 @@ a {
 }
 
 .form-wrap {
+  width: 40vw;
   margin-top: 2rem;
   background: #173972;
   padding: 15px 25px 30px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 80px;
 }
 
 .form-wrap h1,
@@ -46,6 +47,10 @@ a {
 .form-wrap .form-group label {
   color: #bae4ff;
   font-weight: normal;
+}
+
+.divSelect{
+  color: #173972 ;
 }
 
 .form-wrap .form-group input {
@@ -72,16 +77,15 @@ a {
   border-radius: 5px;
   font-family: "Kanit";
   font-size: inherit;
-  font-weight: 1000;
+  font-weight: normal;
 }
 
 .form-wrap .btn:hover {
-  background: #37a08e;
-  color: #f4f4f4;
+  background: #8ad6ff;
 }
 
 .form-wrap .btn:focus {
-  outline-color: #37a08e;
+  outline-color: #2c9cff;
 }
 
 .form-wrap .bottom-text {
@@ -124,15 +128,15 @@ input[type="radio"] {
 
 .sexo .hombre {
   border-radius: 3px 0 0 3px;
-  color: black !important;
+  color: #fff !important;
 }
 .sexo .mujer {
   border-radius: 0 3px 3px 0;
-  color: black !important;
+  color: #fff !important;
 }
 
 .label-radio {
-  background: #37a08e57;
+  background: #8ad6ff;
   color: #fff;
   padding: 10px;
   text-align: center;
@@ -140,14 +144,15 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .label-radio {
-  background: #2f7a67;
+  background: #0e66e7;
   color: #fff !important;
 }
 
-a {
-  color: #49c1a2;
+.login-here {
+  color: #173972;
+  font-family: "Kanit";
 }
 
 .anchorCustom {
-  color: #276052;
+  color: #bae4ff;
 }

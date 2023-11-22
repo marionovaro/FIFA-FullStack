@@ -29,10 +29,10 @@ export const Login = () => {
     useLoginError(res, setRes, login, setOkLogin)
   }, [res])
 
-  useEffect(() => { //? supongo que esto será para el refresh:
+  useEffect(() => { //? estamos inicializando los valores para el login
     setUser(() => null); //? seteamos el user a vacío
     localStorage.removeItem("user") //? eiminamos el user del localstorage
-  }, []) //? como no hay nada en el array de dependencias, creo que es cada vez que se renderiza la pagina (refresh por ejemplo) o se monta el componente login
+  }, []) //? como no hay nada en el array de dependencias, creo que es cada vez que se renderiza la pagina  o se monta el componente login
 
   //! 3. ---- Condicional que controla el estado de navegación
   if (okLogin) {

@@ -20,7 +20,7 @@ export const checkCodeConfirmationUser = async (formData) => {
     .catch((error) => error);
 };
 
-//!  ------------------------------- RESEND CODE -------------------------------
+//!  -------------------------- RESEND CODE -------------------------------
 
 export const resendCodeConfirmationUser = async (formData) => {
   return APIuser.post("/users/resend", formData)
@@ -28,7 +28,7 @@ export const resendCodeConfirmationUser = async (formData) => {
     .catch((error) => error);
 };
 
-//! -------------------------------- AUTOLOGIN ----------------------------------
+//! ----------------------------- AUTOLOGIN ----------------------------------
 
 export const autologinUser = async (formData) => {
   return APIuser.post("/users/login/autologin", formData)
@@ -44,7 +44,7 @@ export const loginUserService = async (formData) => {
     .catch((error) => error);
 };
 
-//! ------------------------------------ CAMBIO CONTRASEÑA SIN TOKEN-------------
+//! ---------------------- CAMBIO CONTRASEÑA SIN TOKEN -------------------------
 
 export const forgotPasswordUser = async (formData) => {
   return APIuser.patch("/users/forgotpassword", formData)
@@ -52,7 +52,7 @@ export const forgotPasswordUser = async (formData) => {
     .catch((error) => error);
 };
 
-//! ------------------------------------BORRADO DEL USUARIO----------------------
+//! ----------------- BORRADO DEL USUARIO ----------------------
 
 export const deleteUserService = async () => {
   return APIuser.delete("/users/", {
@@ -64,7 +64,7 @@ export const deleteUserService = async () => {
     .catch((error) => error);
 };
 
-//! ---------------------------- CAMBIO CONTRASEÑA CUANDO ESTAS LOGAGO----
+//! -------------- CAMBIO CONTRASEÑA CUANDO ESTAS LOGAGO ----------------
 export const changePasswordUserToken = async (formData) => {
   return APIuser.patch("/users/changepassword", formData, {
     headers: {
@@ -75,7 +75,7 @@ export const changePasswordUserToken = async (formData) => {
     .catch((error) => error);
 };
 
-//! ------------------------------ UPDATE USER -----------------------
+//! ------------------ UPDATE USER -----------------------
 
 export const updateUser = async (formData) => {
   return APIuser.patch("/users/update/update", formData, {

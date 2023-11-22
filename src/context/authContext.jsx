@@ -26,7 +26,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     const data = localStorage.getItem("data") //? coge los datos del register que hemos metido en el localstorage temporalmente
     const dataJson = JSON.parse(data) //? ------- los parseamos a JS
     switch (state) {
-      case "ALLUSER": 
+      case "alluser": 
         setAllUser(dataJson); //? seteamos allUser con data (recordemos que la hemos sacado del register)
         localStorage.removeItem("data"); //? borramos esa data del localstorage por temas de seguridad, ha sido solo temporal (-1segundo hasta que la meta en estado y borre)
         break;

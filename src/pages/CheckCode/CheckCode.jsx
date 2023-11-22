@@ -1,7 +1,7 @@
-import React from 'react'
+import "./CheckCode.css"
 
 export const CheckCode = () => {
-  return (
-    <div>CheckCode</div>
-  )
+
+  
+  return 
 }

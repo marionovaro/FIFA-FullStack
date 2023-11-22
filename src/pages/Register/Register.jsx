@@ -2,15 +2,17 @@ import { useForm } from "react-hook-form";
 import "./Register.css";
 import { useEffect, useState } from "react";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { Uploadfile } from "../../components";
 import { useAuth } from "../../context/authContext";
 import { registerUser } from "../../services/user.service";
+import { useRegisterError } from "../../hooks";
 
 export const Register = () => {
   
   //! ---- Destructuring ----
+  const navigate = useNavigate()
   const { allUser, setAllUser, bridgeData } = useAuth();
   const { register, handleSubmit } = useForm(); //? nos los da react-router-dom
 
@@ -45,8 +47,19 @@ export const Register = () => {
 
   //! 2. ---- Función que gestiona los errores
   useEffect(() => {
-
+    console.log(res)
+    useRegisterError(res, setOkRegister, setRes) //? le pasamos para que utilize como param estas variables/funciones/estados
+    if (res?.status == 200) bridgeData("alluser") //? si ha salido bien, llamamos a bridgeData con el param que necesita para entrar en el switch que borra el localstorage
   }, [res]) //? por cada respuesta se ejecuta esto
+
+  useEffect(() => {
+    console.log("soy allUser! 🔎 " + allUser)
+  }, [allUser])
+
+  //! 3. ---- Estado de navegación 
+  if (okRegister) {
+    return <Navigate to = "/verifyCode"/>
+  }
 
   return (
     <>

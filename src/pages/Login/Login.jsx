@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { loginUserService } from "../../services/user.service";
 import { useLoginError } from "../../hooks/useLoginError";
-import "./Login"
 
 export const Login = () => {
 
@@ -15,7 +14,7 @@ export const Login = () => {
   //! ---- Estados ----
   const [res, setRes] = useState({}); //? --------------------- respuesta
   const [send, setSend] = useState(false); //? ---------------- se está enviando (cargando)
-  const [okLogin, setOkLogin] = useState(false); //? ---- ha salido bien o no?
+  const [okLogin, setOkLogin] = useState(false); //? ---------- ha salido bien o no?
 
 
   //! 1. ---- Función que gestiona datos del formulario (login)

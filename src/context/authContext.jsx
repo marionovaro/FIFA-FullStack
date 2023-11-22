@@ -5,7 +5,7 @@ const AuthContext = createContext(); //? se pone vacío porque lo usa el context
 
 export const AuthContextProvider = ({ children }) => { //? va a grapear a otros elementos por eso ponemos el children
 
-  const [user, setUser] = useState(() => {
+  const [user, setUser] = useState(() => { //! esto para que lo hacemos?
     const user = localStorage.getItem("user") //? ---- miramos si en el localstorage hay usuario
     return user ? JSON.parse(user) : null //? -------- si lo hay, devolvemos ese usario parseado, y si no, pues nada
   });
@@ -35,6 +35,9 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
         break;
     }
   }
+
+
+
 
 
   const login = (data) => {

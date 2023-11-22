@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, NavigationType } from "react-router-dom";
 import { autologinUser } from "../services/user.service";
 
 export const useAutoLogin = async (allUser, login) => {
@@ -23,6 +23,8 @@ export const useAutoLogin = async (allUser, login) => {
       const stringUser = JSON.stringify(userCustom); //? lo pasamos a string pq ahora lo mandamos a la funcion login del contexto que lo tiene que meter en el localstorage
       login(stringUser) //? hace el login y setea user como el usuario que le hemos pasado aquí
       return <Navigate to = "/dashboard"/>
+    } else {
+      return <Navigate to = "/login"/> //? si ha fallado el autologin te mandamos a login
     }
   } catch (error) {
     console.log(error)

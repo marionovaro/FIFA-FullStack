@@ -69,5 +69,57 @@ export const CheckCode = () => {
     }
   }
 
-  return 
+  return (
+    <>
+      <div className="form-wrap">
+        <h1>Verify your code 👌</h1>
+        <p>Write the code sent to your email</p>
+        <form onSubmit={handleSubmit(formSubmit)}>
+          <div className="user_container form-group">
+            <input
+              className="input_user"
+              type="text"
+              id="name"
+              name="name"
+              autoComplete="false"
+              {...register("confirmationCode", { required: false })}
+            />
+            <label htmlFor="custom-input" className="custom-placeholder">
+              Registration code
+            </label>
+          </div>
+
+          <div className="btn_container">
+            <button
+              id="btnCheck"
+              className="btn"
+              type="submit"
+              disabled={send}
+              style={{ background: send ? "#49c1a388" : "#49c1a2" }}
+            >
+              Verify Code
+            </button>
+          </div>
+          <div className="btn_container">
+            <button
+              id="btnResend"
+              className="btn"
+              disabled={send}
+              style={{ background: send ? "#49c1a388" : "#49c1a2" }}
+              onClick={() => handleReSend()}
+            >
+              Resend Code
+            </button>
+          </div>
+
+          <p className="bottom-text">
+            <small>
+              If the code is not correct ❌, your user will be deleted from the
+              database and you will need to register again.{" "}
+            </small>
+          </p>
+        </form>
+      </div>
+    </>
+  );
 }

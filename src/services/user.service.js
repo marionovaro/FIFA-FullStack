@@ -55,10 +55,10 @@ export const forgotPasswordUser = async (formData) => {
 
 //! ----------------- BORRADO DEL USUARIO ----------------------
 
-export const deleteUserService = async (id) => {
-  return APIuser.delete(`/`, {
+export const deleteUserService = async () => {
+  return APIuser.delete("/users/", {
     headers: {
-      Authorization: `Bearer ${updateToken()}`,
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWZiMzVhYzVhYzJiMDAwNmRlMDExZCIsImVtYWlsIjoiaG9sYUBnbWFpbC5jb20iLCJpYXQiOjE3MDA3NzA2NTMsImV4cCI6MTcwMDg1NzA1M30.N-eWeE7e-51KPAUPufvrcrfCHPi5Xm2vyfSkhTSIPPY",
     },
   })
     .then((res) => res)

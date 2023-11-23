@@ -13,7 +13,7 @@ export const useDeleteUser = (user, setUser, setDeleteUser) => {
     console.log("result", result);
 
     if (result.isConfirmed) { //? esto nos lo da swal (isconfirmed) es una propiedad del objeto que nos da (result)
-      const res = await deleteUserService(user._id); //? el res viene de la operación que ejecute esta función del service
+      const res = await deleteUserService(); //? el res viene de la operación que ejecute esta función del service
       console.log("soy res", res)
 
       switch (res.status) { //? si sale bien:

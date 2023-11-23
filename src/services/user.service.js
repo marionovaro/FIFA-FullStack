@@ -58,7 +58,7 @@ export const forgotPasswordUser = async (formData) => {
 export const deleteUserService = async () => {
   return APIuser.delete("/users/", {
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWZiMzVhYzVhYzJiMDAwNmRlMDExZCIsImVtYWlsIjoiaG9sYUBnbWFpbC5jb20iLCJpYXQiOjE3MDA3NzA2NTMsImV4cCI6MTcwMDg1NzA1M30.N-eWeE7e-51KPAUPufvrcrfCHPi5Xm2vyfSkhTSIPPY",
+      Authorization: `Bearer ${updateToken()} `,
     },
   })
     .then((res) => res)

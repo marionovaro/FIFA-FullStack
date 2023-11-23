@@ -11,6 +11,8 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     return user ? JSON.parse(user) : null //? -------- si lo hay, devolvemos ese usario parseado, y si no, pues nada
   });
 
+  const [deleteUser, setDeleteUser] = useState(false); //? lo usamos para redirigir al register cuando borramos el user
+
   //! ESTADO ALLUSER (guardamos la info )
   const [allUser, setAllUser] = useState({
     data: {
@@ -51,8 +53,8 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
   }
 
   const value = useMemo(() => ({ //? ------------------------------------- memoriza los datos, que lo que hace es un hook memoriza los returns de las funciones
-    user, setUser, login, logout, allUser, setAllUser, bridgeData //? ---- qué memoriza
-  }), [user, allUser]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
+    user, setUser, login, logout, allUser, setAllUser, bridgeData, deleteUser, setDeleteUser //? ---- qué memoriza
+  }), [user, allUser, deleteUser]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
 
   return <AuthContext.Provider value = {value}>{children}</AuthContext.Provider>
 }

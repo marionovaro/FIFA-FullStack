@@ -8,7 +8,7 @@ export const NavProfile = () => {
 
   return (
     <div className="containerNavProfile">
-      <Link to="/profile/changePassword"> //? ponemos link porque son elementos graficos/multimedia
+      <Link to="/profile/changePassword"> 
         <img
           src="https://res.cloudinary.com/dq186ej4c/image/upload/v1686125399/pngwing.com_npd5sa.png"
           alt="go to ChangePassword"

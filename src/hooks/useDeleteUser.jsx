@@ -12,7 +12,7 @@ export const useDeleteUser = (setUser, setDeleteUser) => {
   }).then(async (result) => {
     console.log("result", result);
 
-    if (result.isConfirmed) { //? esto nos lo da swal (isconfirmed)
+    if (result.isConfirmed) { //? esto nos lo da swal (isconfirmed) es una propiedad del objeto que nos da (result)
       const res = await deleteUserService(); //? el res viene de la operación que ejecute esta función del service
 
       switch (res.status) { //? si sale bien:
@@ -25,7 +25,7 @@ export const useDeleteUser = (setUser, setDeleteUser) => {
           });
 
           setUser(() => null); //? estado vacío (no hay user)
-          setDeleteUser(() => true); //? estado de borrado de user a true pq ha sido borrado
+          setDeleteUser(() => true); //? estado de borrado de user a true pq ha sido borrado // esto lo utilizamos para el protected y las rutas, que si cumple condicion con este estado, redirigimos al register
           localStorage.removeItem("user"); //? lo quitamos del local
 
           break;

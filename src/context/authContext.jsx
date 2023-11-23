@@ -1,3 +1,4 @@
+import { all } from "axios";
 import { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom"
 
@@ -25,6 +26,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
   const bridgeData = (state) => {
     const data = localStorage.getItem("data") //? coge los datos del register que hemos metido en el localstorage temporalmente
     const dataJson = JSON.parse(data) //? ------- los parseamos a JS
+    console.log(dataJson)
     switch (state) {
       case "alluser": 
         setAllUser(dataJson); //? seteamos allUser con data (recordemos que la hemos sacado del register)
@@ -35,9 +37,6 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
         break;
     }
   }
-
-
-
 
 
   const login = (data) => {
@@ -53,7 +52,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
 
   const value = useMemo(() => ({ //? ------------------------------------- memoriza los datos, que lo que hace es un hook memoriza los returns de las funciones
     user, setUser, login, logout, allUser, setAllUser, bridgeData //? ---- qué memoriza
-  }), [user]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
+  }), [user, allUser]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
 
   return <AuthContext.Provider value = {value}>{children}</AuthContext.Provider>
 }

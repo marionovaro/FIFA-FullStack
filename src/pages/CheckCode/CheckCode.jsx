@@ -3,7 +3,7 @@ import "./CheckCode.css"
 import { useAuth } from "../../context/authContext";
 import { useEffect, useState } from "react";
 import { checkCodeConfirmationUser } from "../../services/user.service";
-import { useCheckCodeError } from "../../hooks";
+import { useAutoLogin, useCheckCodeError } from "../../hooks";
 
 export const CheckCode = () => {
 
@@ -26,7 +26,7 @@ export const CheckCode = () => {
     const userLocal = localStorage.getItem("user");
     if (userLocal) { //? LOGIN: si existe userLocal, es que hemos entrado por el login, ya que es el que crea el "user" en el localstorage
         const parseUser = JSON.parse(userLocal)
-        console.log(parseUser)
+        console.log("soy parseuser " + parseUser)
         const customFormData = {
           confirmationCode: parseInt(parseUser.confirmationCode),
           email: parseUser.email
@@ -39,6 +39,7 @@ export const CheckCode = () => {
         confirmationCode: parseInt(formData.confirmationCode), //? ---- también se podría hacer con el allUser.data.confirmationCode
         email: allUser.data.user.email 
       }
+      console.log("soy el custom " + customFormData)
       setSend(true);
       setRes(await checkCodeConfirmationUser(customFormData)) //? servicio con todas las rutas, donde posteo formData en /users/check
       setSend(false) 
@@ -48,6 +49,7 @@ export const CheckCode = () => {
 
   //! 2. ---- Reenvío del código de confirmación
 
+  
   //! 3. ---- useEffect manejador de errores
   useEffect(() => {
     useCheckCodeError(

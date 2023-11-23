@@ -27,7 +27,7 @@ export const useLoginError = (res, setRes, login, setLoginOk) => {
 
   //! ----------------- 404: USER NOT REGISTERED
 
-  if (res?.response?.data?.includes("User no register")) {
+  if (res?.response?.data?.includes("User not found/is not registered")) {
     setRes(() => ({})); //? seteamos estado a vacío. lo usamos => lo vaciamos
     Swal.fire({
       icon: "error",
@@ -40,7 +40,7 @@ export const useLoginError = (res, setRes, login, setLoginOk) => {
 
   //!------------------ 404: PASSWORD DOES NOT MATCH
 
-  if (res?.response?.data?.includes("password dont match")) {
+  if (res?.response?.data?.includes("password is incorrect (does not match) ❌")) {
     setRes(() => ({}));
     Swal.fire({
       icon: "error",

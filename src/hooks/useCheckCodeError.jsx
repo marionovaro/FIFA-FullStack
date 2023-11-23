@@ -13,7 +13,7 @@ export const useCheckCodeError = (
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Interval Server Error ❎!",
+      text: "Internal Server Error ❌!",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -21,9 +21,7 @@ export const useCheckCodeError = (
   }
 
   //todo ------------------------- 200 test todo correcto
-
-  if (res?.data?.testCheckOk?.toString() == "true") {
-    /// si viene del login modificamos el estado de user del contexto para poner el check en true
+  if (res?.data?.testCheckUser?.toString() == "true") { //? en caso LOGIN: modificamos el estado de user del contexto para poner el check en true
     if (localStorage.getItem("user")) {
       const currentUser = localStorage.getItem("user");
       const parseUser = JSON.parse(currentUser);
@@ -32,70 +30,65 @@ export const useCheckCodeError = (
         check: true,
       };
 
-      const stringUser = JSON.stringify(customUser);
-      // llamamos a la funcion de login para resetear que el check esta a true
-      login(stringUser);
+      const stringUser = JSON.stringify(customUser); //? el login lo recibe como string para pasar al localstorage
+      login(stringUser); //? logeamos con el check en true
     }
     setOkCheck(() => true);
     setRes(() => ({}));
     Swal.fire({
       icon: "success",
-      title: "Ok correct code ✅",
+      title: "Correct Code",
       showConfirmButton: false,
       timer: 1500,
     });
   }
 
-  //TODO ----------------------- PENDIENTE DE EXPLICAR ESTOS ERRRORES ----------------------------------
-  // -------------- 200 test = false
 
-  if (res?.data?.testCheckOk?.toString() == "false") {
+  //todo-------------- 200 test = false (sí existe el usuario pero por alguna razon no se ha puesto el check a true, no borramos user, le decimos que lo pruebe otra vez) {code correcto}
+  if (res?.data?.testCheckUser?.toString() == "false") {
     // el codigo si era correcto pero el actualizar en el back el check no se ha producido correctamente
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "Interval server error ❎.",
-      text: "No delete user. Try again, please.",
+      title: "Internal server error ❌",
+      text: "Please try again",
       showConfirmButton: false,
       timer: 2500,
     });
   }
 
-  // -------------- 200: delete: 'ok delete user'
-  if (res?.data?.delete?.includes("ok delete user")) {
-    // esto le enviamos al register porque le henmos borrrado el usuario
+  //todo -------------- 200: "El usuario se ha borrado correctamente"
+  if (res?.data?.delete?.includes("El usuario se ha borrado correctamente")) {
     setOkDeleteUser(() => true);
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "No correct Code ❎.",
-      text: "Your user is delete. Register again, please.",
+      title: "Incorrect Code ❌",
+      text: "User has been deleted. Please register again",
       showConfirmButton: false,
       timer: 2500,
     });
   }
 
-  // ------------- 200: delete: 'error delete user'
-  if (res?.data?.delete?.includes("error delete user")) {
+  //todo ------------- 200: "El usuario no se ha podido borrar"
+  if (res?.data?.delete?.includes("El usuario no se ha podido borrar")) {
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "No correct Code ❎.",
-      text: "No delete user. Try again, please.",
+      title: "Incorrect Code ❌",
+      text: "Please try again",
       showConfirmButton: false,
       timer: 2500,
     });
   }
 
-  // ------------- userNoFound ---> 404
-
+  //todo -----------> 404 "User not found/is not registered 🔎❌"
   if (res?.response?.status == 404) {
     setUserNotFound(() => true);
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "Interval server error ❎.",
-      text: "No delete user. Try again, please.",
+      title:"User not found/is not registered 🔎❌",
       showConfirmButton: false,
       timer: 1500,
     });

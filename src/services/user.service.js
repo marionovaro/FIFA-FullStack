@@ -15,6 +15,7 @@ export const registerUser = async (formData) => {
 //! ------------------------------- CHECK CODE ---------------------------------
 
 export const checkCodeConfirmationUser = async (formData) => {
+  console.log("soy el service" + formData)
   return APIuser.post("/users/check", formData)
     .then((res) => res)
     .catch((error) => error);

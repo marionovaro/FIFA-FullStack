@@ -23,7 +23,7 @@ export const useRegisterError = (res, setOkRegister, setRes) => {
         Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Please , your email is incorrect !❎",
+        text: "Your email is incorrect !❎",
         showConfirmButton: false,
         timer: 1500,
         });
@@ -42,7 +42,7 @@ export const useRegisterError = (res, setOkRegister, setRes) => {
         setRes({});
     }
 
-      //todo ------------------- USERNAME EXISTE
+      //todo ------------------- USERNAME EXISTE (tal y como está solo salta cuando un usuario tiene ese email && username, pero tenemos que hacer que no sea && sino ||)
     if (
         res?.response?.data?.includes(
         "E11000 duplicate key error collection: userProyect.users" //? lo mismo que en el error anterior
@@ -51,7 +51,7 @@ export const useRegisterError = (res, setOkRegister, setRes) => {
         Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Sorry choose another name ❎",
+        text: "Choose another name ❎",
         showConfirmButton: false,
         timer: 1500,
         });

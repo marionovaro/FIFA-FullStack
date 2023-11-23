@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { useDeleteUser } from "../../hooks";
 import "./NavProfile.css"
-export const NavProfile = () => {
 
-  return  const { setUser, setDeleteUser } = useAuth();
+export const NavProfile = () => {
+  const { setUser, setDeleteUser } = useAuth();
+
   return (
     <div className="containerNavProfile">
-      <Link to="/profile/changePassword">
+      <Link to="/profile/changePassword"> //? ponemos link porque son elementos graficos/multimedia
         <img
           src="https://res.cloudinary.com/dq186ej4c/image/upload/v1686125399/pngwing.com_npd5sa.png"
           alt="go to ChangePassword"
@@ -24,7 +28,7 @@ export const NavProfile = () => {
         src="https://res.cloudinary.com/dq186ej4c/image/upload/v1686140226/eliminar_user_rmwoeg.png"
         alt="user delete button"
         className="iconNav iconDeleteUser"
-        onClick={() => useDeleteUser(setUser, setDeleteUser)}
+        onClick={() => useDeleteUser(setUser, setDeleteUser)} 
         // customhook que hace la peticion al servicio de delete User y setea el usuario a null en el contexto
       />
     </div>

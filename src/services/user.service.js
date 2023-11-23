@@ -55,8 +55,8 @@ export const forgotPasswordUser = async (formData) => {
 
 //! ----------------- BORRADO DEL USUARIO ----------------------
 
-export const deleteUserService = async () => {
-  return APIuser.delete("/users/", {
+export const deleteUserService = async (id) => {
+  return APIuser.delete(`/`, {
     headers: {
       Authorization: `Bearer ${updateToken()}`,
     },
@@ -64,6 +64,7 @@ export const deleteUserService = async () => {
     .then((res) => res)
     .catch((error) => error);
 };
+console.log(deleteUserService())
 
 //! -------------- CAMBIO CONTRASEÑA CUANDO ESTAS LOGAGO ----------------
 export const changePasswordUserToken = async (formData) => {

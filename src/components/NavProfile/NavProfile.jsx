@@ -4,7 +4,7 @@ import { useDeleteUser } from "../../hooks";
 import "./NavProfile.css"
 
 export const NavProfile = () => {
-  const { setUser, setDeleteUser } = useAuth();
+  const { user, setUser, setDeleteUser } = useAuth();
 
   return (
     <div className="containerNavProfile">
@@ -28,8 +28,8 @@ export const NavProfile = () => {
         src="https://res.cloudinary.com/dq186ej4c/image/upload/v1686140226/eliminar_user_rmwoeg.png"
         alt="user delete button"
         className="iconNav iconDeleteUser"
-        onClick={() => useDeleteUser(setUser, setDeleteUser)} 
-        // customhook que hace la peticion al servicio de delete User y setea el usuario a null en el contexto
+        onClick={() => useDeleteUser(user, setUser, setDeleteUser)} 
+        //? customhook que hace la peticion al servicio de delete User y setea el usuario a null en el contexto
       />
     </div>
   );

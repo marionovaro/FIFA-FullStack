@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import "./CheckCode.css"
 import { useAuth } from "../../context/authContext";
 import { useEffect, useState } from "react";
-import { checkCodeConfirmationUser } from "../../services/user.service";
-import { useAutoLogin, useCheckCodeError } from "../../hooks";
+import { checkCodeConfirmationUser, resendCodeConfirmationUser } from "../../services/user.service";
+import { useAutoLogin, useCheckCodeError, useResendCodeError } from "../../hooks";
+import { Navigate } from "react-router-dom";
 
 export const CheckCode = () => {
 
@@ -47,8 +48,26 @@ export const CheckCode = () => {
 
   }
 
-  //! 2. ---- Reenvío del código de confirmación
-
+  //! 2. ---- Reenvío del código de confirmación 
+  const handleReSend = async () => { //? funciona exactamente igual que la función anterior pero solamente necesitamos el email
+    const userLocal = localStorage.getItem("user");
+    if (userLocal) {
+      const parseUser = JSON.parse(userLocal);
+      const customFormData = {
+        email: parseUser.email,
+      }
+      setSend(true);
+      setRes(await resendCodeConfirmationUser(customFormData));
+      setSend(false);
+    } else {
+      const customFormData = {
+        email: allUser?.data?.user?.email,
+      }
+      setSend(true);
+      setRes(await resendCodeConfirmationUser(customFormData));
+      setSend(false);
+    }
+  }
   
   //! 3. ---- useEffect manejador de errores
   useEffect(() => {
@@ -62,6 +81,11 @@ export const CheckCode = () => {
     );
   }, [res])
 
+  useEffect(() => {
+    console.log(resResend)
+    useResendCodeError(resResend, setResResend, setUserNotFound)
+  }, [resResend])
+
   //! 4. ---- Condicionales que evaluan si está a true para navegar
   if (okCheck) {
     if (!localStorage.getItem("user")) { //? si no hay user, es decir, ha venido del register:
@@ -69,6 +93,14 @@ export const CheckCode = () => {
     } else {
       return <Navigate to = "/dashboard"/> //? si viene del login, ya está logado y solo hace falta llevarlo al dashboard
     }
+  }
+
+  if (okDeleteUser) { //? esto lo setea el hook de errores si el codigo está mal. al borrar el usuario setea este estado a true para devolvernos a register
+    return <Navigate to = "/register"/>
+  }
+
+  if (userNotFound) { //? si ha hecho un refresh se me recarga la página, se borra allUser, y no puedo acceder al email para reconocerlo en el back
+    return <Navigate to = "/login" />
   }
 
   return (

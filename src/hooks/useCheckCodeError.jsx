@@ -20,7 +20,7 @@ export const useCheckCodeError = (
     setRes(() => ({}));
   }
 
-  //todo ------------------------- 200 test todo correcto
+  //todo ------------------------- 200 Todo Correcto
   if (res?.data?.testCheckUser?.toString() == "true") { //? en caso LOGIN: modificamos el estado de user del contexto para poner el check en true
     if (localStorage.getItem("user")) {
       const currentUser = localStorage.getItem("user");
@@ -44,7 +44,7 @@ export const useCheckCodeError = (
   }
 
 
-  //todo-------------- 200 test = false (sí existe el usuario pero por alguna razon no se ha puesto el check a true, no borramos user, le decimos que lo pruebe otra vez) {code correcto}
+  //todo-------------- 200: Check = false pero código correcto => TRY AGAIN
   if (res?.data?.testCheckUser?.toString() == "false") {
     // el codigo si era correcto pero el actualizar en el back el check no se ha producido correctamente
     setRes(() => ({}));
@@ -82,9 +82,9 @@ export const useCheckCodeError = (
     });
   }
 
-  //todo -----------> 404 "User not found/is not registered 🔎❌"
+  //todo -----------> 404 "User not found/is not registered 🔎❌" //? esto tambien salta si se recarga la página
   if (res?.response?.status == 404) {
-    setUserNotFound(() => true);
+    setUserNotFound(() => true); //? en el checkCode.jsx con esto te devolvemos al login pq has refrescado
     setRes(() => ({}));
     Swal.fire({
       icon: "error",

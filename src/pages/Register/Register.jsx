@@ -13,7 +13,7 @@ export const Register = () => {
   
   //! ---- Destructuring ----
   const navigate = useNavigate()
-  const { allUser, setAllUser, bridgeData } = useAuth();
+  const { allUser, setAllUser, bridgeData, setDeleteUser } = useAuth();
   const { register, handleSubmit } = useForm(); //? nos los da react-router-dom
 
   //! ---- Estados ----
@@ -56,6 +56,10 @@ export const Register = () => {
     console.log("soy allUser! 🔎 " + allUser)
   }, [allUser])
 
+  useEffect(() => {
+    setDeleteUser(() => false)
+  }, [])
+  
   //! 3. ---- Estado de navegación 
   if (okRegister) {
     return <Navigate to = "/verifyCode"/>

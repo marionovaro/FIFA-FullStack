@@ -1,0 +1,16 @@
+.player-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.player-image{
+  width: 250px;
+  object-fit: cover;
+  border: 1px solid black;
+  border-radius: 5px
+}
+
+.player-name{
+  margin: 10px 0 0 0;
+}

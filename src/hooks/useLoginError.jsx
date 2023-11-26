@@ -1,7 +1,7 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 export const useLoginError = (res, setRes, login, setLoginOk) => {
-  //! -----------------200
 
+  //todo ---------------- 200  --> Correcto
   if (res?.status == 200) { //? si ha salido bien (res.status: 200)
     const dataCustom = { //? modificamos porque no quiero toda la res, solo lo que me interesa
       token: res.data.token,
@@ -18,46 +18,43 @@ export const useLoginError = (res, setRes, login, setLoginOk) => {
 
     Swal.fire({
       icon: "success",
-      title: "Welcome to my Page",
-      text: "Login ok ✅",
+      title: "Logged In",
       showConfirmButton: false,
       timer: 1500,
     });
   }
 
-  //! ----------------- 404: USER NOT REGISTERED
+  //todo ---------------- 404  --> User not Registered ❌
 
   if (res?.response?.data?.includes("User not found/is not registered")) {
     setRes(() => ({})); //? seteamos estado a vacío. lo usamos => lo vaciamos
     Swal.fire({
       icon: "error",
-      title: "Oops...",
-      text: "Unregistered user ❎",
+      title: "Unregisterd User",
       showConfirmButton: false,
       timer: 1500,
     });
   }
 
-  //!------------------ 404: PASSWORD DOES NOT MATCH
+  //todo ---------------- 404  --> Password does not match ❌
 
   if (res?.response?.data?.includes("password is incorrect (does not match) ❌")) {
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "Oops...",
-      text: "Password dont match ❎",
+      text: "Password is incorrect",
       showConfirmButton: false,
       timer: 1500,
     });
   }
 
-  //! ----------------- 500: INTERNAL SERVER ERROR
+  //todo ---------------- 500  --> Internal Server Error ❌
   if (res?.response?.status == 500) {
     setRes(() => ({}));
     Swal.fire({
       icon: "error",
-      title: "Oops...",
-      text: "Interval Server Error ❎!",
+      title: "Internal Server Error",
+      text: "Plese, try again later",
       showConfirmButton: false,
       timer: 1500,
     });

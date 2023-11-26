@@ -64,7 +64,6 @@ export const deleteUserService = async () => {
     .then((res) => res)
     .catch((error) => error);
 };
-console.log(deleteUserService())
 
 //! -------------- CAMBIO CONTRASEÑA CUANDO ESTAS LOGAGO ----------------
 export const changePasswordUserToken = async (formData) => {
@@ -89,4 +88,24 @@ export const updateUser = async (formData) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+  //! -------------------> Get User By Name
+  export const getUserByName = async (userName) => {
+    return APIuser.get(`/users/byName/${userName}`)
+      .then((res) => res)
+      .catch((error) => error);
+  };
+
+  //! -------------------> Like Jugador [User]
+  export const togglePlayerLike = async (playerId) => {
+    return APIuser.patch(`/users/togglePlayer/${playerId}`, {
+      headers: {
+        Authorization: `Bearer ${updateToken()}`,
+      },
+    })
+      .then((res) => res)
+      .catch((error) => error);
+  };
+
+
  

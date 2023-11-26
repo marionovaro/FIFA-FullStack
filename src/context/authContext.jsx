@@ -10,6 +10,9 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     const user = localStorage.getItem("user") //? ---- miramos si en el localstorage hay usuario
     return user ? JSON.parse(user) : null //? -------- si lo hay, devolvemos ese usario parseado, y si no, pues nada
   });
+  console.log(user)
+  const [userData, setUserData] = useState()
+  console.log(userData)
 
   const [deleteUser, setDeleteUser] = useState(false); //? lo usamos para redirigir al register cuando borramos el user
 
@@ -39,8 +42,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
         break;
     }
   }
-
-
+  
   const login = (data) => {
     localStorage.setItem("user", data) //? ---- podemos meter la data porque la hemos recibido en string, en el user, metemos la data
     const parseUser = JSON.parse(data) //? ---- la inversa (string ==> no string) lo hacemos para meterlo en el estado
@@ -52,11 +54,45 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     setUser(null) //? ---------------------- como no hay user, el estado user se queda vacío
   }
 
+
+  //todo -------------- PLAYERS ----------------------------------------------------------
+  const [controller, setController] = useState("getall")
+  const [allPlayers, setAllPlayers] = useState([])
+  const [playerByName, setPlayerByName] = useState([])
+  const [playerDescending, setPlayerDescending] = useState([])
+  const [playerAscending, setPlayerAscending] = useState([])
+  const [playerFilter, setPlayerFilter] = useState([])
+
+
   const value = useMemo(() => ({ //? ------------------------------------- memoriza los datos, que lo que hace es un hook memoriza los returns de las funciones
-    user, setUser, login, logout, allUser, setAllUser, bridgeData, deleteUser, setDeleteUser //? ---- qué memoriza
-  }), [user, allUser, deleteUser]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
+    user,
+    setUser,
+    userData,
+    setUserData,
+    login,
+    logout,
+    allUser,
+    setAllUser,
+    bridgeData,
+    deleteUser,
+    setDeleteUser,
+    controller,
+    setController,
+    allPlayers,
+    setAllPlayers,
+    playerByName,
+    setPlayerByName,
+    playerDescending,
+    setPlayerDescending,
+    playerAscending,
+    setPlayerAscending,
+    playerFilter,
+    setPlayerFilter
+  }), [user, userData, allUser, deleteUser, playerByName, allPlayers, controller, playerDescending, playerAscending, playerFilter]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
 
   return <AuthContext.Provider value = {value}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => useContext(AuthContext) //? facilita el uso del contexto. es un custom hook
+
+// console.log(AuthContext)

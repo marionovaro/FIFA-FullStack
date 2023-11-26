@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
+#finder{
+  height: 10vh;
+  width: 100vw;
+  padding: 0 80px 0 80px;
+}
+
+#left-finder{
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+#find-name{
+  border-radius: 30px;
+  border: 1px solid black;
+  height: 40px;
+  width: 100%;
+}
+
+#float-right-finder{
+  width: fit-content;
+  float: right;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 25px;
+}
+
+#sort-finder, #filter-finder{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 10px 0 10px;
+}
+
+#min-max{
+  gap: 1rem;
+  border: red;
+  height: 25px;
+}
+
+#min-max > input {
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#filter-select{
+  height: 25px;
+  border-radius: 3px;
+}
+
+#sort-select{
+  border-radius: 3px;
+  height: auto;
+  font-family: "Baloo 2";
+}
+
+#filter-players, #sort-players{
+  border: transparent;
+  font-size: 25px;
+  border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 600;
+}
+
+#find-name::placeholder, #min-filter::placeholder, #max-filter::placeholder{
+  color: black;
+  opacity: 0.8;
+  font-style: italic;
+  text-align: center;
+}
+
+#find-button{
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: 2px solid black;
+  background-color: transparent;
+  margin: 0 0 0 1rem;
+
+}

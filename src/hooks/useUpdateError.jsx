@@ -20,7 +20,7 @@ export const useUpdateError = (res, setRes, setUser, logout) => {
     res?.data?.testUpdate?.forEach((item) => {
       for (let clave in item) {
         if (item[clave] == true) {
-          check += `-${clave}-`;
+          check += `${clave} `;
         }
       }
     });
@@ -43,7 +43,7 @@ export const useUpdateError = (res, setRes, setUser, logout) => {
     return Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Interval Server Error! Don't update user ❎ ",
+      text: "Internal Server Error. User not Updated ",
       showConfirmButton: false,
       timer: 1500,
     });

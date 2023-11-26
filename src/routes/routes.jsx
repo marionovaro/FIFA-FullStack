@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import { App } from "../App"
-import { ChangePassword, CheckCode, Dashboard, ForgotPassword, FormProfile, Home, Login, NotFound, Profile, Register } from "../pages"
+import { ChangePassword, CheckCode, Dashboard, ForgotPassword, FormProfile, Home, Login, NotFound, Players, Profile, Register } from "../pages"
 import { Protected, ProtectedCheckChildren } from "../components"
 
 export const router = createBrowserRouter([
@@ -69,6 +69,10 @@ export const router = createBrowserRouter([
             ),
           },
         ]
+      },
+      {
+        path: "/players",
+        element: <Players/>
       },
     ]
   }

@@ -1,9 +1,9 @@
 import "./CardPlayer.css"
 import { useAuth } from "../../context/authContext"
-import { ButtonLike } from "../index"
+import { ButtonLike, DeletePlayer } from "../index"
 
 export const CardPlayer = () => {
-  const { controller, allPlayers, playerByName, playerDescending, playerAscending, playerFilter } = useAuth()
+  const { controller, allPlayers, playerByName, playerDescending, playerAscending, playerFilter, userData, favPlayers } = useAuth()
 
   const printCardPlayer = () => {
     switch (controller) {
@@ -22,9 +22,12 @@ export const CardPlayer = () => {
       case "filter":
         return playerFilter
 
+      case "favplayers":
+        return favPlayers
+
     }
   }
-  console.log(printCardPlayer())
+  console.log("estoy pintando esto: " + printCardPlayer())
     
   return (
     <>
@@ -33,7 +36,8 @@ export const CardPlayer = () => {
               <section className = "player-card" key={player._id}>
                 <img className = "player-image" src={player.image}/>
                 <h2 className = "player-name">{player.name}</h2>
-                <ButtonLike playerId = {player._id}/>
+                <ButtonLike playerId = {player._id} playerName = {player.name}/>
+                {userData.rol === "admin" && <DeletePlayer playerId = {player._id} playerName = {player.name}/>}
               </section>
             )
         })}

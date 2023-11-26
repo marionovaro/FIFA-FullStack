@@ -1,7 +1,9 @@
+import { useEffect } from "react"
 import { useAuth } from "../../context/authContext"
 import { filterPlayers, getAllPlayers, getNamePlayers, sortAscendingPlayers, sortDescendingPlayers } from "../../services/player.service"
 import { CardPlayer } from "../CardPlayer/CardPlayer"
 import "./Finder.css"
+import { getUserByName } from "../../services/user.service"
 export const Finder = () => {
   const { setPlayerByName, setAllPlayers, setController, setPlayerDescending, setPlayerAscending, setPlayerFilter } = useAuth()
 

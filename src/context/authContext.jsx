@@ -1,5 +1,5 @@
 import { all } from "axios";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { getUserByName } from "../services/user.service";
 
@@ -15,11 +15,22 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
 
   const [userData, setUserData] = useState()
 
-  
+  useEffect(() => {
+    const getUpdatedUser = async () => {
+      const resByName = await getUserByName(user.user)
+      const userDataVar = resByName.data[0]
+      console.log(userDataVar)
+      setUserData(userDataVar)
+    }
+    getUpdatedUser()
+  }, [])
+
+  // console.log(userData)
+
   const bridgeUserData = (state) => {
     const data = localStorage.getItem("userData") //? coge los datos del register que hemos metido en el localstorage temporalmente
     const dataJson = JSON.parse(data) //? ------- los parseamos a JS
-    console.log(dataJson)
+    // console.log(dataJson)
     switch (state) {
       case "userdata": 
         setUserData(dataJson); //? seteamos allUser con data (recordemos que la hemos sacado del register)
@@ -29,9 +40,8 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
       default:
         break;
     }
-    console.log("soy USER DATA: " + userData)
+    
   }
-
 
   const [deleteUser, setDeleteUser] = useState(false); //? lo usamos para redirigir al register cuando borramos el user
 
@@ -81,6 +91,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
   const [playerDescending, setPlayerDescending] = useState([])
   const [playerAscending, setPlayerAscending] = useState([])
   const [playerFilter, setPlayerFilter] = useState([])
+  const [favPlayers, setFavPlayers] = useState([])
 
 
   const value = useMemo(() => ({ //? ------------------------------------- memoriza los datos, que lo que hace es un hook memoriza los returns de las funciones
@@ -107,8 +118,10 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     playerAscending,
     setPlayerAscending,
     playerFilter,
-    setPlayerFilter
-  }), [user, userData, allUser, deleteUser, playerByName, allPlayers, controller, playerDescending, playerAscending, playerFilter]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
+    setPlayerFilter,
+    favPlayers,
+    setFavPlayers,
+  }), [user, userData, allUser, deleteUser, playerByName, allPlayers, controller, playerDescending, playerAscending, playerFilter, favPlayers]) //? -------------------------------------------------------- array de dependencias para que cada vez que cambie el usuario vuelva a memorizar
 
   return <AuthContext.Provider value = {value}>{children}</AuthContext.Provider>
 }

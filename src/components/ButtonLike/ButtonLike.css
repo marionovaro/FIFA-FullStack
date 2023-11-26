@@ -1,3 +1,18 @@
+.like-button{
+  border: none;
+  background-color: transparent;
+}
+
+.like-button > svg {
+  stroke: #EA442B;
+  stroke-width: 1.5;
+}
+
+
+
+
+
+
 /* @charset "UTF-8";
 *, *:before, *:after {
   position: relative;

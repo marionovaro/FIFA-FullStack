@@ -1,3 +1,4 @@
+import { updateToken } from "../utils";
 import { APIuser } from "./serviceApiUser.config";
 
   //todo ----------------> Get All Players
@@ -77,8 +78,8 @@ import { APIuser } from "./serviceApiUser.config";
   };
 
   //! -------------------> Eliminar Jugador [Admin]
-  export const deletePlayer = async (formData) => {
-    return APIuser.post("/players/", formData, {
+  export const deletePlayer = async (playerId) => {
+    return APIuser.delete(`/players/${playerId}`, {
       headers: {
         Authorization: `Bearer ${updateToken()}`,
       },

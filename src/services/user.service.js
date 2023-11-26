@@ -107,5 +107,17 @@ export const updateUser = async (formData) => {
       .catch((error) => error);
   };
 
+    //! -------------------> Get Fav Players [User]
+    export const getUsersFavPlayers = async (userId) => {
+      // console.log("HE ENTRADDDDOOOOO")
+      return APIuser.get(`/users/favPlayers/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${updateToken()}`,
+        },
+      })
+        .then((res) => res)
+        .catch((error) => error);
+    };
+
 
  

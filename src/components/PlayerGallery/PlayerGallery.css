@@ -1,4 +1,4 @@
-#player-gallery{
+.player-gallery{
   display: flex;
   flex-wrap: wrap;
   gap: 3.5rem;

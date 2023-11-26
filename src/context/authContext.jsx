@@ -1,6 +1,7 @@
 import { all } from "axios";
 import { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { getUserByName } from "../services/user.service";
 
 const AuthContext = createContext(); //? se pone vacío porque lo usa el context provider
 
@@ -11,8 +12,26 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     return user ? JSON.parse(user) : null //? -------- si lo hay, devolvemos ese usario parseado, y si no, pues nada
   });
   console.log(user)
+
   const [userData, setUserData] = useState()
-  console.log(userData)
+
+  
+  const bridgeUserData = (state) => {
+    const data = localStorage.getItem("userData") //? coge los datos del register que hemos metido en el localstorage temporalmente
+    const dataJson = JSON.parse(data) //? ------- los parseamos a JS
+    console.log(dataJson)
+    switch (state) {
+      case "userdata": 
+        setUserData(dataJson); //? seteamos allUser con data (recordemos que la hemos sacado del register)
+        localStorage.removeItem("userData"); //? borramos esa data del localstorage por temas de seguridad, ha sido solo temporal (-1segundo hasta que la meta en estado y borre)
+        break;
+    
+      default:
+        break;
+    }
+    console.log("soy USER DATA: " + userData)
+  }
+
 
   const [deleteUser, setDeleteUser] = useState(false); //? lo usamos para redirigir al register cuando borramos el user
 
@@ -74,6 +93,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     allUser,
     setAllUser,
     bridgeData,
+    bridgeUserData,
     deleteUser,
     setDeleteUser,
     controller,

@@ -1,21 +1,33 @@
+import { useEffect } from "react"
 import { useAuth } from "../../context/authContext"
-import { togglePlayerLike } from "../../services/user.service"
+import { getUserByName, togglePlayerLike } from "../../services/user.service"
 import "./ButtonLike.css"
 export const ButtonLike = ({ playerId }) => {
-  const { user, userData, setUserData } = useAuth()
+  const { user, userData, setUserData, bridgeUserData } = useAuth()
 
   const toggleLike = async () => {
       const resPlayerLike = await togglePlayerLike(playerId)
       setUserData(resPlayerLike.data.userUpdate)
       console.log(userData)
+      getUserData()
   }
 
-    const corazon = document.querySelector(".heart")
-    // console.log(corazon)
-    if ((userData.favPlayers).includes(playerId) !== undefined ) {
-      console.log("🔎")
-    }
+  const getUserData = async () => {
+      const resByName = await getUserByName(user.user)
+      const userDataVar = resByName.data[0]
+      console.log(userDataVar)
+      localStorage.setItem("userData", userDataVar)
+      bridgeUserData("userdata")
+  }
 
+
+    // useEffect(() => {
+    //   const corazon = document.querySelector(".heart")
+    //   // console.log(corazon)
+    //   if ((userData.favPlayers).includes(playerId) !== undefined ) {
+    //     console.log("🔎")
+    //   }
+    // }, [userData])
 
   return (
     <div onClick={toggleLike}>

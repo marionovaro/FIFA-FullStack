@@ -19,6 +19,9 @@ export const Login = () => {
 
   //! 1. ---- Función que gestiona datos del formulario (login)
   const formSubmit = async (formData) => {
+    for (let clave in formData) {
+      console.log("soy el customformdata " + clave + ":" + formData[clave])
+    }
     setSend(true);
     setRes(await loginUserService(formData)) //? servicio con todas las rutas, donde posteo formData en /users/login
     setSend(false) 

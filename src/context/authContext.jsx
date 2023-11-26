@@ -11,7 +11,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     const user = localStorage.getItem("user") //? ---- miramos si en el localstorage hay usuario
     return user ? JSON.parse(user) : null //? -------- si lo hay, devolvemos ese usario parseado, y si no, pues nada
   });
-  console.log(user)
+  // console.log(user)
 
   const [userData, setUserData] = useState()
 
@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => { //? va a grapear a otros 
     const getUpdatedUser = async () => {
       const resByName = await getUserByName(user.user)
       const userDataVar = resByName.data[0]
-      console.log(userDataVar)
+      // console.log(userDataVar)
       setUserData(userDataVar)
     }
     getUpdatedUser()

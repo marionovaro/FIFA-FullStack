@@ -31,6 +31,14 @@ export const NavProfile = () => {
         onClick={() => useDeleteUser(user, setUser, setDeleteUser)} 
         //? customhook que hace la peticion al servicio de delete User y setea el usuario a null en el contexto
       />
+
+      <Link to="/profile/appSetting">
+        <img
+          src="   https://cdn-icons-png.flaticon.com/512/2698/2698011.png "
+          alt="settings for admins"
+          className="iconNav iconSettings"
+        />
+      </Link>
     </div>
   );
 }

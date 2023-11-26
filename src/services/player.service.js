@@ -67,7 +67,7 @@ import { APIuser } from "./serviceApiUser.config";
 //? AUTENTICADOS ------------------------------------------------------------------------
 
   //! -------------------> Crear Jugador [Admin]
-  export const createPlayer = async (formData) => {
+  export const createPlayerService = async (formData) => {
     return APIuser.post("/players/", formData, {
       headers: {
         Authorization: `Bearer ${updateToken()}`,

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import { App } from "../App"
-import { ChangePassword, CheckCode, Dashboard, ForgotPassword, FormProfile, Home, Login, NotFound, Players, Profile, Register } from "../pages"
+import { ChangePassword, CheckCode, Dashboard, ForgotPassword, FormProfile, Home, Login, NotFound, Players, Profile, Register, Setting } from "../pages"
 import { Protected, ProtectedCheckChildren } from "../components"
 
 export const router = createBrowserRouter([
@@ -65,6 +65,14 @@ export const router = createBrowserRouter([
             element: (
               <Protected>
                 <ChangePassword />
+              </Protected>
+            ),
+          },
+          {
+            path: "/profile/appSetting",
+            element: (
+              <Protected>
+                <Setting />
               </Protected>
             ),
           },

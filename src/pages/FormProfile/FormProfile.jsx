@@ -42,6 +42,7 @@ export const FormProfile = () => {
           const customFormData = {
             ...formData,
           };
+          
           setSend(true);
           setRes(await updateUser(customFormData));
           setSend(false);
